@@ -13,30 +13,49 @@
     <title>Title</title>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tanya's library</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" role="search">
+                <%--<li><a href="/library/list">Список книг</a></li>--%>
+                <%--<li><a href="#about">About</a></li>--%>
+                <%--<li><a href="#contact">Contact</a></li>--%>
+            </ul>
+            <%--<ul class="nav navbar-nav navbar-right">--%>
+                <%--<li><a class="navbar-brand" href="/library/profile"><c:out value="${username}"></c:out></a></li>--%>
+                <%--<li class="active"><a href="/library/logout">Logout</a></li>--%>
+            <%--</ul>--%>
+        </div>
+    </div>
+</nav>
+
 <div class="jumbotron">
     <div class="container">
     <form action="/library/registration" method="post">
 
             <div class="input-group">
                 <span for="firstname" class="input-group-addon" >Firstname:</span>
-                <input type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="firstname" name="firstname" >
+                <input required type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="firstname" name="firstname" >
             </div>
 
             <div class="input-group">
                 <span for="lastname" class="input-group-addon" >Lastname:</span>
-                <input type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="lastname" name="lastname" >
+                <input required type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="lastname" name="lastname" >
             </div>
             <div class="input-group">
                 <span for="login" class="input-group-addon" >Login:</span>
-                <input type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="login" name="login" >
+                <input required type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="login" name="login" >
             </div>
             <div class="input-group">
                 <span for="password" class="input-group-addon" >Password:</span>
-                <input type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="password" name="password" >
+                <input required type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="password" name="password" >
             </div>
             <div class="input-group">
                 <span for="email" class="input-group-addon" >E-MAIL:</span>
-                <input type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="email" name="email" >
+                <input required type="text" class="form-control" placeholder="Input" aria-describedby="basic-addon1" id="email" name="email" >
             </div>
 
 

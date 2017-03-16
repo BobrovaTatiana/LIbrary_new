@@ -25,6 +25,6 @@ dependencies {
     compile group: 'org.springframework.security', name: 'spring-security-web', version: '4.2.0.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-core', version: '4.2.0.RELEASE'
     compile group: 'org.springframework.security', name: 'spring-security-config', version: '4.2.0.RELEASE'
-    //compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.5.RELEASE'
+    compile group: 'org.springframework', name: 'spring-webmvc', version: '4.3.5.RELEASE'
 
 }

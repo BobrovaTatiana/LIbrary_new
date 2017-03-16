@@ -1,15 +1,16 @@
 package ru.bobrova.models.dao;
 
-import ru.bobrova.common.exceptions.UserDAOException;
-import marshaling.Lib_users;
 import ru.bobrova.models.connector.AcademConnector;
 import ru.bobrova.models.pojo.Users;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.bobrova.common.exceptions.UserDAOException;
 
-import java.sql.*;
-import java.text.ParseException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -32,72 +33,9 @@ public class UserDAO {
 
     private static final String SQL_USER_ID = "SELECT * FROM \"public\".\"Users\"\n" +
             "WHERE id_user = ?";
-
-    public Lib_users loadUsers (Connection con) throws SQLException, ClassNotFoundException {
-        Lib_users users = new Lib_users();
-        users.setUsers("List of users");
-        try {
-            try {
-                Statement stmt = con.createStatement();
-                ResultSet rs = stmt.executeQuery("SELECT * FROM \"public\".\"Users\"");
-                while (rs.next()) {
-                    Integer id = Integer.parseInt(rs.getString("id_user"));
-                    String firstname = rs.getString("firstname").trim();
-                    Date date = rs.getDate("date_reg");
-                    String lastname = rs.getString("lastname").trim();
-                    String email = rs.getString("email").trim();
-                    String login1 = rs.getString("login").trim();
-
-                    users.getUser().add(createUser(id, firstname, date, lastname,
-                            email, login1));
-                }
-                rs.close();
-                stmt.close();
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        //con.close();
-        return users;
-    }
-
-    public Users createUser(int id, String firstname, Date date, String lastname,
-                            String email, String login) throws ParseException {
-        Users user = new Users();
-        user.setId_user(id);
-        user.setFirstname(firstname);
-        user.setDate_reg(date);
-        user.setLastname(lastname);
-        user.setEmail(email);
-        user.setLogin(login);
-        return user;
-    }
-
-    public void uploadUsers (Object object, Connection dbConnection) throws SQLException, ClassNotFoundException, InterruptedException {
-        Lib_users users = (Lib_users) object;
-        String insertTableSQL = "INSERT INTO public.\"Users\"(\n" +
-                "\t\"id_user\", \"firstname\", \"lastname\", \"email\", \"date_reg\", \"login\")\n" +
-                "\tVALUES (?, ?, ?, ?, ?, ?);";
-        PreparedStatement prepareStatement = dbConnection.prepareStatement(insertTableSQL);
-        dbConnection.setAutoCommit(false);
-
-        for (int i = 0; i < users.getUser().size(); i++) {
-            prepareStatement.setInt(1, users.getUser().get(i).getId_user());
-            prepareStatement.setString(2, users.getUser().get(i).getFirstname());
-            prepareStatement.setString(3, users.getUser().get(i).getLastname());
-            prepareStatement.setString(4, users.getUser().get(i).getEmail());
-            prepareStatement.setDate(5, new java.sql.Date(users.getUser().get(i).getDate_reg().getTime()));
-            prepareStatement.setString(6, users.getUser().get(i).getLogin());
-            prepareStatement.addBatch();
-        }
-        prepareStatement.executeBatch();
-        dbConnection.commit();
-
-        System.out.println("Record is inserted into Users table!");
-        prepareStatement.close();
-    }
+    private static final String SQL_UPDATE_PSW = "UPDATE public.\"Users_psw\"\n" +
+            "\tSET password=?\n" +
+            "\tWHERE id_user=?;";
 
     @Autowired
     public static Users getUserByLoginAndPassword(String login, String password) throws UserDAOException {
@@ -132,6 +70,7 @@ public class UserDAO {
         return user;
     }
 
+    @Autowired
     public static boolean registrationUser(String firstname, String lastname, Date date_reg,
                                            String login, String password, String email) throws UserDAOException {
         try(Connection connection = AcademConnector.getConnection();
@@ -212,4 +151,49 @@ public class UserDAO {
         return user;
     }
 
+    public boolean changePsw(String new_psw, int id_user) throws UserDAOException {
+        try(Connection connection = AcademConnector.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_PSW)) {
+            preparedStatement.setString(1, new_psw);
+            preparedStatement.setInt(2, id_user);
+
+            int count = preparedStatement.executeUpdate();
+            if(count > 0){
+                logger.debug("updated " + count);
+                preparedStatement.close();
+                connection.close();
+                return true;
+            }else{
+                logger.debug(id_user + " not updated");
+                preparedStatement.close();
+                connection.close();
+            }
+        } catch (SQLException e) {
+            logger.error(e);
+        }
+        return false;
+    }
+
+//    public static boolean changePsw1(String new_psw, int id_user) throws UserDAOException {
+//        try(Connection connection = AcademConnector.getConnection();
+//            PreparedStatement preparedStatement = connection.prepareStatement(SQL_UPDATE_PSW)) {
+//            preparedStatement.setString(1, new_psw);
+//            preparedStatement.setInt(2, id_user);
+//
+//            int count = preparedStatement.executeUpdate();
+//            if(count > 0){
+//                logger.debug("updated " + count);
+//                preparedStatement.close();
+//                connection.close();
+//                return true;
+//            }else{
+//                logger.debug(id_user + " not updated");
+//                preparedStatement.close();
+//                connection.close();
+//            }
+//        } catch (SQLException e) {
+//            logger.error(e);
+//        }
+//        return false;
+//    }
 }

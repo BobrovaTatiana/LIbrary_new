@@ -15,16 +15,28 @@
     <title>Title</title>
 </head>
 <body>
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tanya's library</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" role="search">
+                <%--<li><a href="/library/list">Список книг</a></li>--%>
+                <%--<li><a href="#about">About</a></li>--%>
+                <%--<li><a href="#contact">Contact</a></li>--%>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-brand" href="/library/profile"><c:out value="${username}"></c:out></a></li>
+                <li class="active"><a href="/library/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="jumbotron">
     <div class="container">
-<table width="100%">
-    <tr>
-        <div style="position: fixed; top: 0%; right: 2%; color: royalblue; width: 50%; height: 10%">
-            <p align="right"><c:out value="${username}"></c:out></p>
-            <p align="right"><input type="submit" value="Logout" onclick="window.location='/library/logout';"> </p>
-        </div>
-    </tr>
-</table>
 
 <div style="top: 10%; width: 100%; height: 80%">
     <br><h2>Список книг</h2>
@@ -36,6 +48,7 @@
             <th>Author</th>
             <th>Genre</th>
             <th>Actions</th>
+            <th>Read</th>
         </tr>
 
         <c:forEach items="${listBook}" var="book">
@@ -49,6 +62,8 @@
 
                 <td><a href="/library/edit?id=${book.id_book}">edit</a>
                     <a href="/library/delete?id=${book.id_book}">del</a></td>
+
+                <td><a href="/library/text?id=${book.id_book}">read it</a></td>
             </tr>
 
         </c:forEach>

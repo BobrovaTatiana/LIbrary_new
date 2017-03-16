@@ -23,8 +23,6 @@
           <element id="library" level="project" name="Gradle: postgresql:postgresql:9.0-801.jdbc4" />
           <element id="library" level="project" name="Gradle: javax.mail:mail:1.4" />
           <element id="library" level="project" name="Gradle: org.springframework:spring-context:4.3.5.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.springframework:spring-web:4.3.4.RELEASE" />
-          <element id="library" level="project" name="Gradle: org.springframework:spring-webmvc:4.3.4.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-web:4.2.0.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-core:4.2.0.RELEASE" />
           <element id="library" level="project" name="Gradle: org.springframework.security:spring-security-config:4.2.0.RELEASE" />
@@ -35,6 +33,8 @@
           <element id="library" level="project" name="Gradle: org.springframework:spring-expression:4.3.5.RELEASE" />
           <element id="library" level="project" name="Gradle: aopalliance:aopalliance:1.0" />
           <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-webmvc/4.3.5.RELEASE/c624659217edab07d8279fb0f90462136f089220/spring-webmvc-4.3.5.RELEASE.jar" />
+          <element id="file-copy" path="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework/spring-web/4.3.5.RELEASE/6641daccf2fddafc8358144f3a4f999130fdf144/spring-web-4.3.5.RELEASE.jar" />
         </element>
       </element>
     </root>

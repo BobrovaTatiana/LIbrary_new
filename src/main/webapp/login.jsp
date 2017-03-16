@@ -37,21 +37,40 @@
     <title>Страница авторизации</title>
 </head>
 <body>
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tanya's library</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" role="search">
+                <%--<li><a href="/library/list">Список книг</a></li>--%>
+                <%--<li><a href="#about">About</a></li>--%>
+                <%--<li><a href="#contact">Contact</a></li>--%>
+            </ul>
+            <%--<ul class="nav navbar-nav navbar-right">--%>
+                <%--<li><a class="navbar-brand" href="/library/profile"><c:out value="${username}"></c:out></a></li>--%>
+                <%--<li class="active"><a href="/library/logout">Logout</a></li>--%>
+            <%--</ul>--%>
+        </div>
+    </div>
+</nav>
+
 <div class="jumbotron">
     <div class="container">
 
         <h2>Страница авторизации</h2>
         <form action="/library/login" method="post">
             <p><b>Логин:</b><br>
-                <input type="text" name="login" id="login" size="30"></p>
+                <input required type="text" name="login" id="login" size="30"></p>
 
             <p><b>Пароль:</b><br>
-                <input type="password" name="password" id="password" size="30"></p>
+                <input required type="password" name="password" id="password" size="30"></p>
             <p><input class="btn btn-primary btn-lg" type="submit" value="ОK" formmethod="post"></p>
             <%--<p><a class="btn btn-primary btn-lg" role="button" formmethod="post">OK</a></p>--%>
             </p>
         </form>
-        <p><a class="btn btn-primary btn-lg" href="registration.jsp" role="button">Регистрация</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/library/registration" role="button">Регистрация</a></p>
 
         <%--<p><input type="submit" value="Регистрация"--%>
                   <%--onclick="window.location='registration.jsp';"/>--%>

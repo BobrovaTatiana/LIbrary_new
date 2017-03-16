@@ -21,16 +21,28 @@
     <title>Title</title>
 </head>
 <body>
+
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Tanya's library</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" role="search">
+                <li><a href="/library/list">Список книг</a></li>
+                <%--<li><a href="#about">About</a></li>--%>
+                <%--<li><a href="#contact">Contact</a></li>--%>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a class="navbar-brand" href="/library/profile"><c:out value="${username}"></c:out></a></li>
+                <li class="active"><a href="/library/logout">Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
 <div class="jumbotron">
     <div class="container">
-<table width="100%">
-    <tr>
-        <div style="position: fixed; top: 0%; right: 2%; color: royalblue; width: 50%; height: 10%">
-            <p align="right"><c:out value="${username}"></c:out></p>
-            <p align="right"><input type="submit" value="Logout" onclick="window.location='/library/logout';"> </p>
-        </div>
-    </tr>
-</table>
 
 <div style="top: 10%; width: 100%; height: 80%">
     <br><h2>Добавление книги</h2>
@@ -38,27 +50,27 @@
         <table class="table">
             <tr>
                 <td><label for="name">Book:</label></td>
-                <td><input type="text" name="name" id="name" value="" placeholder="Input"></td>
+                <td><input required type="text" name="name" id="name" value="" placeholder="Input"></td>
             </tr>
             <tr>
                 <td><label for="type">Type:</label></td>
-                <td><input type="text" name="type" id="type" value="" placeholder="Input"></td>
+                <td><input required type="text" name="type" id="type" value="" placeholder="Input"></td>
             </tr>
             <tr>
                 <td><label for="date_pub">dd.mm.yyyy:</label></td>
-                <td><input type="date" name="date_pub" id="date_pub" value="" placeholder="Input"></td>
+                <td><input required type="date" name="date_pub" id="date_pub" value="" placeholder="Input"></td>
             </tr>
             <tr>
                 <td><label for="author">Author:</label></td>
-                <td><input type="text" name="author" id="author" value="" placeholder="Input"></td>
+                <td><input required type="text" name="author" id="author" value="" placeholder="Input"></td>
             </tr>
             <tr>
                 <td><label for="genre">Genre:</label></td>
-                <td><input type="text" name="genre" id="genre" value="" placeholder="Input"></td>
+                <td><input required type="text" name="genre" id="genre" value="" placeholder="Input"></td>
             </tr>
             <tr>
                 <td><label for="year">Year of publication:</label></td>
-                <td><input type="text" name="year" id="year" value="" placeholder="Input"></td>
+                <td><input required type="text" name="year" id="year" value="" placeholder="Input"></td>
             </tr>
         </table>
 

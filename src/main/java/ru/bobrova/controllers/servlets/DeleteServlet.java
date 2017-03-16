@@ -1,7 +1,6 @@
-package ru.bobrova.controllers;
+package ru.bobrova.controllers.servlets;
 
 import org.apache.log4j.Logger;
-import ru.bobrova.services.BookService;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -22,13 +21,13 @@ public class DeleteServlet extends HttpServlet {
         String idstr = req.getParameter("id");
         int id  = Integer.parseInt(idstr);
 
-        if(BookService.deleteBook(id)){
-            logger.trace("true");
-            resp.sendRedirect("/library/list");
-        }else{
-            logger.trace("false");
-            req.getRequestDispatcher("/error.jsp").forward(req, resp);
-        }
+//        if(BookService.deleteBook(id)){
+//            logger.trace("true");
+//            resp.sendRedirect("/library/list");
+//        }else{
+//            logger.trace("false");
+//            req.getRequestDispatcher("/error.jsp").forward(req, resp);
+//        }
     }
 
     @Override

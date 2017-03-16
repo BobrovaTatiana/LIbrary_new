@@ -1,11 +1,11 @@
-package ru.bobrova.controllers;
+package ru.bobrova.controllers.servlets;
 
 import ru.bobrova.common.exceptions.UserDAOException;
 import ru.bobrova.models.pojo.Users;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
-import ru.bobrova.services.*;
+import ru.bobrova.services.IUserService;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

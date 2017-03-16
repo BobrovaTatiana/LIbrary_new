@@ -1,4 +1,4 @@
-package ru.bobrova.controllers;
+package ru.bobrova.controllers.servlets;
 
 import org.apache.log4j.Logger;
 
